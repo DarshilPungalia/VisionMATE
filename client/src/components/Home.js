@@ -34,7 +34,7 @@ function Home() {
   setTimeout(() => {
     handleSpeakInstruction();
     console.log("speaking");
-  }, 2000);
+  }, 200000);
 
   // Finally return the Homepage
   return (
