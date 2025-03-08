@@ -13,7 +13,20 @@ function STT() {
     textBox.innerHTML = null;
   };
 
-  // Here goes the Speech to text code
+  const handleSaveToFile = () => {
+    const textBox = document.getElementById("text-box");
+    const text = textBox.innerText;
+    
+    const blob = new Blob([text], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "speech-to-text.txt";
+    link.click();
+    URL.revokeObjectURL(url);
+  };
+
+  // Speech to text code
   const recognition = new window.webkitSpeechRecognition();
   recognition.continuous = true;
   recognition.lang = "en-US";
@@ -27,14 +40,18 @@ function STT() {
     textBox.appendChild(paragraph);
   };
 
-  // handle start
   const handleStart = () => {
     setIsListening(true);
     recognition.start();
+    const startMsg = new SpeechSynthesisUtterance("Recording started");
+    window.speechSynthesis.speak(startMsg);
   };
+
   const handleStop = () => {
     setIsListening(false);
     recognition.abort();
+    const endMsg = new SpeechSynthesisUtterance("Recording ended");
+    window.speechSynthesis.speak(endMsg);
   };
 
   const handleListening = () => {
@@ -48,16 +65,12 @@ function STT() {
   // Handle speak function
   const [isPlaying, setisPlaying] = useState(false);
   const [synth, setSynth] = useState(null);
+
   useEffect(() => {
     const initSynth = () => {
       const synth = window.speechSynthesis;
-      // Get the voices available on the system
       const voices = synth.getVoices();
-
-      // Find the voice you want to use by name and language
       const voice = voices.find((v) => v.name === "Daniel");
-
-      // Set the voice for the SpeechSynthesisUtterance object
       const utterance = new SpeechSynthesisUtterance("Hello, World!");
       utterance.voice = voice;
       utterance.rate = 1;
@@ -75,6 +88,7 @@ function STT() {
       }
     };
   }, [synth, isPlaying]);
+
   return (
     <FeatureTemplate>
       <div className="p-4 h-3/4">
@@ -88,7 +102,7 @@ function STT() {
         </div>
         <br />
         <br />
-        <div className="flex items-center justify-center microphone-button">
+        <div className="flex items-center justify-center microphone-button relative">
           <button
             className={`bg-orange-500 w-28 h-28 py-1 rounded-full text-xl px-6 text-orange-100 items-center inline-block shadow-lg`}
             onClick={handleListening}
@@ -110,6 +124,11 @@ function STT() {
               width="35px"
               className="inline-block"
             />
+            {isListening && (
+              <div className="absolute -top-2 -right-2">
+                <div className="animate-pulse w-4 h-4 bg-red-500 rounded-full"></div>
+              </div>
+            )}
           </button>
         </div>
 
@@ -121,12 +140,18 @@ function STT() {
           ></div>
         </div>
         <br />
-        <div className="w-11/12 lg:w-7/12 mx-auto flex justify-start">
+        <div className="w-11/12 lg:w-7/12 mx-auto flex justify-start gap-4">
           <button
             className="bg-black text-white w-24 px-2 py-1 rounded-md"
             onClick={handleReset}
           >
             Reset
+          </button>
+          <button
+            className="bg-black text-white w-24 px-2 py-1 rounded-md"
+            onClick={handleSaveToFile}
+          >
+            Save
           </button>
         </div>
       </div>
