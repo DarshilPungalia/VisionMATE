@@ -11,6 +11,8 @@
 # testing
 /coverage
 
+.gitignore
+
 # production
 /build
 
