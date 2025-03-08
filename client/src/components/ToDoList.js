@@ -15,36 +15,45 @@ function ToDoList() {
     listItem: "",
   });
   const [items, setItems] = useState([]);
-  const populateItems = async () => {
-    const res = await getList();
-    setItems(res.items);
-    let itemLists = res.items.map((item, index) => {
-      return item.listItem + "\n";
-    });
-    itemLists = itemLists.join("");
-    setText(itemLists);
-  };
+  const [isPlaying, setIsPlaying] = useState(false); // Use setIsPlaying
+  const [synth, setSynth] = useState(null);
+
   useEffect(() => {
     populateItems();
   }, []);
-  const handleReset = (event) => {
-    setText(null);
-  };
-  const handleAddToList = async (event) => {
-    event.preventDefault();
-    let res = await addToList(item);
-    if (res.error) {
-      console.log(res.error);
-    } else {
-      setItem({
-        listItem: "",
-      });
-      console.log("Added successfully!");
-      await populateItems();
+
+  const populateItems = async () => {
+    const res = await getList();
+    if (res && res.items) { // Check if res and res.items exist
+      setItems(res.items);
+      let itemLists = res.items.map((item) => item.listItem + "\n");
+      itemLists = itemLists.join("");
+      setText(itemLists);
     }
   };
 
-  // Here goes the Speech to text code
+
+  const handleReset = (event) => {
+    setText(null);
+    setListeningText(null);
+    setItem({ listItem: "" });
+  };
+
+  const handleAddToList = async (event) => {
+    event.preventDefault();
+    if (!item.listItem) return;
+
+    let res = await addToList(item);
+    if (res.ok) {
+      setItem({ listItem: "" });
+      setListeningText(null);
+      await populateItems();
+    } else {
+      console.error("Error adding item:", res.status, res.statusText);
+      // Handle error, e.g., display an error message to the user
+    }
+  };
+
   const recognition = new window.webkitSpeechRecognition();
   recognition.continuous = true;
   recognition.lang = "en-US";
@@ -57,12 +66,11 @@ function ToDoList() {
     });
   };
 
-  // Handle listening event
-  // handle start
   const handleStart = () => {
     setIsListening(true);
     recognition.start();
   };
+
   const handleStop = () => {
     setIsListening(false);
     recognition.abort();
@@ -76,81 +84,49 @@ function ToDoList() {
     }
   };
 
-  // Handle delete function goes here
   const handleDelete = async (event) => {
-    console.log(event.target.id);
     const res = await deleteItem(event.target.id);
     if (res.error) {
-      console.log(res.error);
+      console.error("Error deleting item:", res.error);
     }
     await populateItems();
   };
 
-  // Handle speak function
-  const [lastUtterance, setLastUtterance] = useState(null);
-  const [isPlaying, setisPlaying] = useState(false);
-  const [synth, setSynth] = useState(null);
+
   useEffect(() => {
     const initSynth = () => {
       const synth = window.speechSynthesis;
-      // Get the voices available on the system
-      const voices = synth.getVoices();
-
-      // Find the voice you want to use by name and language
-      const voice = voices.find((v) => v.name === "Daniel");
-
-      // Set the voice for the SpeechSynthesisUtterance object
-      const utterance = new SpeechSynthesisUtterance("Hello, World!");
-      utterance.voice = voice;
-      utterance.rate = 1;
+      const utterance = new SpeechSynthesisUtterance(" "); // Initialize with empty string
       setSynth(synth);
     };
 
     if (!synth) {
       initSynth();
     }
-
-    return () => {
-      if (synth && isPlaying) {
-        synth.cancel();
-        setisPlaying(false);
-      }
-    };
-  }, [synth, isPlaying]);
+  }, [synth]);
 
   const handleSpeak = () => {
-    const voices = synth.getVoices();
+    if (!text) return; // Don't speak if text is empty
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.rate = 1;
-    const voice = voices.find((v) => v.name === "Daniel");
-    utterance.voice = voice;
     utterance.rate = 0.9;
-    if (lastUtterance && isPlaying) {
-      synth.resume();
-    } else {
-      synth.speak(utterance);
-      setisPlaying(true);
-    }
-    setLastUtterance(utterance);
+    synth.speak(utterance);
+    setIsPlaying(true);
   };
 
   const handleStopSpeaking = () => {
     if (synth && isPlaying) {
-      setLastUtterance(null);
       synth.cancel();
-      setisPlaying(false);
+      setIsPlaying(false);
     }
   };
 
-  const handlePlay = (event) => {
+  const handlePlay = () => {
     if (isPlaying) {
-      setisPlaying(false);
-      // function call to stop speaking
       handleStopSpeaking();
     } else {
-      setisPlaying(true);
       handleSpeak();
     }
+    setIsPlaying(!isPlaying); // Toggle isPlaying
   };
 
   return (
@@ -229,6 +205,7 @@ function ToDoList() {
           </div>
         </div>
         <br />
+        
         <div className="w-11/12 lg:w-7/12 mx-auto flex p-4 justify-start">
           <button
             className="bg-black text-white w-24 px-2 py-1 rounded-md"
