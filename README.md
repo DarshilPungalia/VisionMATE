@@ -18,7 +18,7 @@ A computer vision-based system that converts American Sign Language (ASL) gestur
 - [Problem Statement](#problem_statement)
 - [Solution](#solution)
 - [Features](#features)
-- [System Architecture](#architecture) 
+- [System Architecture](#architecture)
 - [Technology Stack](#tech_stack)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -33,6 +33,7 @@ Over 70 million deaf people worldwide use sign language as their primary means o
 ## 💡 Solution <a name="solution"></a>
 
 VisionMATE provides a real-time sign language interpretation system that:
+
 - Captures hand gestures through a webcam
 - Uses MediaPipe for accurate hand landmark detection
 - Employs CNN for gesture classification
@@ -51,10 +52,12 @@ VisionMATE provides a real-time sign language interpretation system that:
 ## 🏗 System Architecture <a name="architecture"></a>
 
 1. **Input Layer**: Webcam capture and hand detection
-2. **Processing Layer**: 
-  - MediaPipe hand landmark detection
-  - Landmark drawing on white background
-  - CNN-based classification
+2. **Processing Layer**:
+
+- MediaPipe hand landmark detection
+- Landmark drawing on white background
+- CNN-based classification
+
 3. **Output Layer**: Text display and speech synthesis
 
 ## ⚡ Technology Stack <a name="tech_stack"></a>
@@ -113,7 +116,11 @@ pip install opencv-python mediapipe tensorflow numpy pyttsx3
 
 ## 👥 Contributors
 
-- [akshitjain16](https://github.com/akshitjain16)
+- [Akshit Jain](https://github.com/akshitjain16)
+- [Harshit Soni](https://github.com/Harshit-Soni78/)
+- [Vishnu Kumar Jangid](https://github.com/vishnujangid88/)
+- [Darshil Pungalia](https://github.com/DarshilPungalia)
+- [Mukand Jirawla](https://github.com/Mukandjirawla)
 
 ## 📝 License
 
