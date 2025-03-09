@@ -25,7 +25,7 @@ function FeatureCard({ title, description, image, link }) {
         </p>
       </div>
       <div className="px-15 w-full hidden md:flex justify-end items-center">
-        <img src={image} alt="image" width="200px" height="200px" />
+        <img src={image} width="200px" height="200px" />
       </div>
     </div>
   );
