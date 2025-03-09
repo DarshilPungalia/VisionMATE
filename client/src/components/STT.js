@@ -3,6 +3,7 @@ import FeatureTemplate from "./FeatureTemplate";
 import Microphone from "../assets/images/Microphone.svg";
 import { Link } from "react-router-dom";
 import Prev from "../assets/images/back.png";
+import { initializeSpeechHover } from './speechUtils';
 
 function STT() {
   const [listeningText, setListeningText] = useState(null);
@@ -12,6 +13,10 @@ function STT() {
     const textBox = document.getElementById("text-box");
     textBox.innerHTML = null;
   };
+
+    useEffect(() => {
+      initializeSpeechHover();
+    }, []);
 
   const handleSaveToFile = () => {
     const textBox = document.getElementById("text-box");
@@ -94,10 +99,10 @@ function STT() {
       <div className="p-4 h-3/4">
         <div className="flex">
           <Link to="/" className="inline-block">
-            <img src={Prev} width={30} height={30} alt="go back" />
+            <img class="speech-hover" src={Prev} width={30} height={30} alt="go back" />
           </Link>
-          <p className="text-2xl font-semibold inline-block px-2 ml-3">
-            Text-to-Speech
+          <p className="speech-hover text-2xl font-semibold inline-block px-2 ml-3">
+            Text-to-Speech Page
           </p>
         </div>
         <br />
@@ -119,10 +124,11 @@ function STT() {
             }
           >
             <img
+
               src={Microphone}
-              alt="microphone"
+              alt="microphone icon"
               width="35px"
-              className="inline-block"
+              className="inline-block speech-hover"
             />
             {isListening && (
               <div className="absolute -top-2 -right-2">
@@ -135,20 +141,20 @@ function STT() {
         <br />
         <div className="flex items-center w-full mx-auto">
           <div
-            className="bg-white w-11/12 lg:w-7/12 mx-auto h-[408px] overflow-scroll"
+            className="speech-hover bg-white w-11/12 lg:w-7/12 mx-auto h-[408px] overflow-scroll"
             id="text-box"
           ></div>
         </div>
         <br />
         <div className="w-11/12 lg:w-7/12 mx-auto flex justify-start gap-4">
           <button
-            className="bg-black text-white w-24 px-2 py-1 rounded-md"
+            className="speech-hover bg-black text-white w-24 px-2 py-1 rounded-md"
             onClick={handleReset}
           >
             Reset
           </button>
           <button
-            className="bg-black text-white w-24 px-2 py-1 rounded-md"
+            className="speech-hover bg-black text-white w-24 px-2 py-1 rounded-md"
             onClick={handleSaveToFile}
           >
             Save

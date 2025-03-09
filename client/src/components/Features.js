@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ObjectDetection from "../assets/images/ObjectDetection.png";
 import TTSF from "../assets/images/tts-feat.png";
 import STTF from "../assets/images/stt-feat.png";
 import FeatureCard from "./FeatureCard";
+import { initializeSpeechHover } from './speechUtils';
 
 function Features() {
+  useEffect(() => {
+    initializeSpeechHover();
+  }, []);
   return (
     <section className="bg-gradient-to-r from-slate-50 to-slate-100 py-20" id="features">
       <div className="container mx-auto px-4">
-        <h2 className="text-5xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-amber-500 to-amber-700">
+        <h2 className="speech-hover text-5xl font-bold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-amber-500 to-amber-700">
           Features
         </h2>
         

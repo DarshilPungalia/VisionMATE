@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SignOut from "../assets/images/SignOut23X18.svg";
 import Logo from "../assets/images/logo55X55.svg";
 import { isAuthenticated, signout } from "../api/Auth_API";
+import { initializeSpeechHover } from './speechUtils';
+
 function FeatureTemplate({ children }) {
+    useEffect(() => {
+      initializeSpeechHover();
+    }, []);
   const navigate = useNavigate();
   // Handle signout
   const handleSignout = () => {
@@ -23,14 +28,14 @@ function FeatureTemplate({ children }) {
       >
         <ul className="flex items-center justify-center">
           <li>
-            <img src={Logo} alt="logo" className="w-[50px]" />
+            <img src={Logo} alt="website logo" className="w-[50px] speech-hover" />
           </li>
           <li className="hidden lg:inline-block">
             <Link
               to="/home"
               className="px-5 py-2 text-sm hover:bg-orange-500 text-orange-100 mx-5"
             >
-              <b>HOME</b>
+              <b class="speech-hover">HOME</b>
             </Link>
           </li>
           <li className="hidden lg:inline-block">
@@ -38,7 +43,7 @@ function FeatureTemplate({ children }) {
               href="#about-us"
               className="px-5 py-2 text-sm hover:bg-orange-500 text-orange-100 mx-5"
             >
-              <b>ABOUT</b>
+              <b class="speech-hover">ABOUT</b>
             </a>
           </li>
           <li className="hidden lg:inline-block">
@@ -46,7 +51,7 @@ function FeatureTemplate({ children }) {
               href="#contact-us"
               className="px-5 py-2 text-sm hover:bg-orange-500 text-orange-100 mx-5"
             >
-              <b>CONTACT</b>
+              <b class="speech-hover">CONTACT</b>
             </a>
           </li>
           {isAuthenticated() && (
