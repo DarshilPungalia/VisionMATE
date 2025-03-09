@@ -7,17 +7,22 @@ import Webcam from "react-webcam";
 import { Link } from "react-router-dom";
 import FeatureTemplate from "./FeatureTemplate";
 import Prev from "../assets/images/back.png";
+
 function ObjectDetection() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const [object, setObject] = useState(null);
   const [prevObjects, setPrevObjects] = useState([]);
+  const [lastSpokenTime, setLastSpokenTime] = useState(0);
+  const [lastSpokenObject, setLastSpokenObject] = useState(null);
 
   const runCoco = async () => {
-    const net = await cocossd.load();
+    const net = await cocossd.load({
+      base: "mobilenet_v2"
+    });
     setInterval(() => {
       detect(net);
-    }, 500);
+    }, 8000);
   };
 
   const detect = async (net) => {
@@ -26,22 +31,18 @@ function ObjectDetection() {
       webcamRef.current !== null &&
       webcamRef.current.video.readyState === 4
     ) {
-      // Get Video Properties
       const video = webcamRef.current.video;
       const videoWidth = webcamRef.current.video.videoWidth;
       const videoHeight = webcamRef.current.video.videoHeight;
 
-      // Set video width
       webcamRef.current.video.width = videoWidth;
       webcamRef.current.video.height = videoHeight;
 
-      // Set canvas height and width
       canvasRef.current.width = videoWidth;
       canvasRef.current.height = videoHeight;
 
       const objects = await net.detect(video);
 
-      // Compare the objects detected in the current frame to those detected in the previous frame
       const newObjects = objects.filter(
         (object) =>
           !prevObjects.some((prevObject) => object.class === prevObject.class)
@@ -51,7 +52,6 @@ function ObjectDetection() {
         setObject(newObjects[0].class);
       }
       const ctx = canvasRef.current.getContext("2d");
-      // Update the previous objects with the current objects
       setPrevObjects(objects);
       drawRect(objects, ctx);
     }
@@ -61,33 +61,46 @@ function ObjectDetection() {
     runCoco();
   }, []);
 
-  // Draw rectangle box
+  const speakText = (text) => {
+    if ("speechSynthesis" in window) {
+      const synth = window.speechSynthesis;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 1;
+      const voices = synth.getVoices();
+      const voice = voices.find((v) => v.name === "Daniel");
+      utterance.voice = voice;
+      synth.speak(utterance);
+    }
+  };
+
   const drawRect = (detection, ctx) => {
     detection.forEach((prediction) => {
-      // Get prediction results
       const [x, y, width, height] = prediction["bbox"];
       let text = prediction["class"];
 
-      // Set styling
       const color = "red";
       ctx.strokeStyle = color;
       ctx.font = "20px Arial";
       ctx.fillStyle = "white";
 
-      // Draw rectangles and text
       ctx.beginPath();
       ctx.fillText(text, x, y);
       ctx.rect(x, y, width, height);
       ctx.stroke();
 
-      if ("speechSynthesis" in window) {
-        const synth = window.speechSynthesis;
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.rate = 1;
-        const voices = synth.getVoices();
-        const voice = voices.find((v) => v.name === "Daniel"); // Change this to the name of the desired voice
-        utterance.voice = voice;
-        synth.speak(utterance);
+      const currentTime = Date.now();
+      const timeDiff = currentTime - lastSpokenTime;
+
+      // Speak immediately if object changed
+      if (text !== lastSpokenObject) {
+        speakText(text);
+        setLastSpokenTime(currentTime);
+        setLastSpokenObject(text);
+      } 
+      // Repeat same object after 10 seconds
+      else if (timeDiff >= 10000) {
+        speakText(text);
+        setLastSpokenTime(currentTime);
       }
 
       text = text.toUpperCase();
@@ -96,6 +109,7 @@ function ObjectDetection() {
       setObject(text);
     });
   };
+
   return (
     <FeatureTemplate>
       <div className="mt-4 p-4 lg:h-3/4 h-1/2">
@@ -140,7 +154,6 @@ function ObjectDetection() {
           />
         </div>
 
-        {/* Here goes Object names */}
         <div className="h-28 flex justify-center items-start">
           <h1 className="text-2xl inline-block p-2">{object}</h1>
         </div>
