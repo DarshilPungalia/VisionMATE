@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Feed</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        #video-container {
+            margin-top: 20px;
+        }
+        #labels {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function fetchLabels() {
+            fetch('/get_labels')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('labels').innerText = "Detected Objects: " + data.join(', ');
+                });
+        }
+        
+        setInterval(fetchLabels, 1000); // Fetch labels every second
+    </script>
+</head>
+<body>
+    <h1>Object Detection Video Feed</h1>
+    <div id="video-container">
+        <img src="{{ url_for('video_stream') }}" width="800" />
+    </div>
+    <div id="labels">Detected Objects: </div>
+</body>
+</html>

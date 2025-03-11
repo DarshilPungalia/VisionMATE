@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object Detection</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        img {
+            border: 5px solid #333;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+        }
+
+        #predictions {
+            margin-top: 15px;
+            font-size: 20px;
+            color: white;
+            background-color: #007BFF;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-items: center;
+            justify-self: center;
+            width: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        #predictions:hover {
+            background-color: #00b306;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        function fetchPredictions() {
+            fetch('/get_predictions')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('predictions').innerHTML =
+                        data.length ? `<strong>Detected Objects:</strong> ${data.join(', ')}` : "No objects detected";
+                });
+        }
+        setInterval(fetchPredictions, 1000);
+
+    </script>
+</head>
+
+<body>
+    <h1>Live Object Detection</h1>
+    <img src="{{ url_for('video_feed') }}" width="640">
+    <div id="predictions" class="hoverDiv" style="margin-top: 10px; font-size: 18px; color: blue;"></div>
+
+    <script>
+        const hoverDiv = document.getElementsByID("predictions");
+        const speech = new SpeechSynthesisUtterance();
+
+        hoverDiv.addEventListener("mouseenter", () => {
+            speech.text = hoverDiv.innerText;
+            window.speechSynthesis.speak(speech);
+        });
+
+        hoverDiv.addEventListener("mouseleave", () => {
+            audio.pause();
+            audio.currentTime = 0;
+            window.speechSynthesis.cancel();
+        });
+
+    </script>
+</body>
+
+</html>

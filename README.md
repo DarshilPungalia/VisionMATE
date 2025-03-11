@@ -18,7 +18,7 @@ A comprehensive web application designed to assist visually impaired students wi
 - [Problem Statement](#problem_statement)
 - [Solution](#solution)
 - [Features](#features)
-- [System Architecture](#architecture) 
+- [System Architecture](#architecture)
 - [Technology Stack](#tech_stack)
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
@@ -31,12 +31,22 @@ Visually impaired students face significant challenges in accessing educational 
 
 ## 💡 Solution <a name="solution"></a>
 
+<<<<<<< HEAD
 VisionMATE provides an integrated platform with multiple assistive features:
 - Real-time object detection for environmental awareness
 - Text-to-Speech conversion for reading documents
 - Speech-to-Text for note-taking and communication
 - Voice-controlled navigation
 - Task management system with voice commands
+=======
+VisionMATE provides a real-time sign language interpretation system that:
+
+- Captures hand gestures through a webcam
+- Uses MediaPipe for accurate hand landmark detection
+- Employs CNN for gesture classification
+- Converts recognized gestures to text
+- Transforms text to speech output
+>>>>>>> 31ffbbd722313b37162800ee33c7274ef6f41f76
 
 ## ✨ Features <a name="features"></a>
 
@@ -50,6 +60,7 @@ VisionMATE provides an integrated platform with multiple assistive features:
 
 ## 🏗 System Architecture <a name="architecture"></a>
 
+<<<<<<< HEAD
 1. **Frontend Layer**: 
    - React.js based user interface
    - TensorFlow.js for object detection
@@ -59,6 +70,16 @@ VisionMATE provides an integrated platform with multiple assistive features:
    - Node.js/Express server
    - MongoDB database
    - RESTful API architecture
+=======
+1. **Input Layer**: Webcam capture and hand detection
+2. **Processing Layer**:
+
+- MediaPipe hand landmark detection
+- Landmark drawing on white background
+- CNN-based classification
+
+3. **Output Layer**: Text display and speech synthesis
+>>>>>>> 31ffbbd722313b37162800ee33c7274ef6f41f76
 
 ## ⚡ Technology Stack <a name="tech_stack"></a>
 
