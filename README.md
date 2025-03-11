@@ -1,4 +1,4 @@
-<h1 align="center">VisionMATE: Sign Language to Text and Speech Conversion</h1>
+<h1 align="center">VisionMATE: Assistive Technology for Visually Impaired</h1>
 
 <div align="center">
 
@@ -10,7 +10,7 @@
 ---
 
 <p align="center">
-A computer vision-based system that converts American Sign Language (ASL) gestures into text and speech in real-time using CNN and MediaPipe.
+A comprehensive web application designed to assist visually impaired students with features like object detection, text-to-speech, speech-to-text, and task management.
 </p>
 
 ## 📝 Table of Contents
@@ -23,97 +23,116 @@ A computer vision-based system that converts American Sign Language (ASL) gestur
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Results](#results)
-- [Future Scope](#future_scope)
+- [Contributors](#contributors)
 
 ## 🧐 Problem Statement <a name="problem_statement"></a>
 
-Over 70 million deaf people worldwide use sign language as their primary means of communication. While sign language enables them to communicate within their community, there exists a significant communication barrier with people who don't understand sign language. This creates challenges in their daily interactions, education, work, and access to services.
+Visually impaired students face significant challenges in accessing educational materials, managing tasks, and interacting with their environment. Traditional learning materials and tools often lack accessibility features, creating barriers to education and daily activities.
 
 ## 💡 Solution <a name="solution"></a>
 
-VisionMATE provides a real-time sign language interpretation system that:
-- Captures hand gestures through a webcam
-- Uses MediaPipe for accurate hand landmark detection
-- Employs CNN for gesture classification
-- Converts recognized gestures to text
-- Transforms text to speech output
+VisionMATE provides an integrated platform with multiple assistive features:
+- Real-time object detection for environmental awareness
+- Text-to-Speech conversion for reading documents
+- Speech-to-Text for note-taking and communication
+- Voice-controlled navigation
+- Task management system with voice commands
 
 ## ✨ Features <a name="features"></a>
 
-- Real-time hand gesture recognition
-- Background-independent processing using MediaPipe landmarks
-- Support for American Sign Language alphabet (A-Z)
-- 97-99% accuracy in various conditions
-- Text and speech output
-- User-friendly interface
+- Object Detection using TensorFlow.js and COCO-SSD model
+- Text-to-Speech functionality for document reading
+- Speech-to-Text for live captioning
+- Voice-controlled navigation throughout the application
+- Interactive To-Do list with voice commands
+- User authentication system
+- Responsive and accessible interface
 
 ## 🏗 System Architecture <a name="architecture"></a>
 
-1. **Input Layer**: Webcam capture and hand detection
-2. **Processing Layer**: 
-  - MediaPipe hand landmark detection
-  - Landmark drawing on white background
-  - CNN-based classification
-3. **Output Layer**: Text display and speech synthesis
+1. **Frontend Layer**: 
+   - React.js based user interface
+   - TensorFlow.js for object detection
+   - Web Speech API integration
+   
+2. **Backend Layer**: 
+   - Node.js/Express server
+   - MongoDB database
+   - RESTful API architecture
 
 ## ⚡ Technology Stack <a name="tech_stack"></a>
 
-- Python 3.9
-- OpenCV
-- MediaPipe
-- TensorFlow/Keras
-- NumPy
-- pyttsx3
+**Frontend:**
+- React.js
+- TensorFlow.js
+- Web Speech API
+- Styled Components
+- Tailwind CSS
+- Framer Motion
+
+**Backend:**
+- Node.js
+- Express.js
+- MongoDB
+- JWT Authentication
 
 ## 📋 Prerequisites <a name="prerequisites"></a>
 
-- Windows 8 or higher
+- Node.js (v14 or higher)
+- MongoDB
+- Modern web browser
 - Webcam
-- PyCharm IDE (recommended)
-- Python 3.9
+- Microphone
 
 ## 🔧 Installation <a name="installation"></a>
 
+1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/VisionMATE.git
+git clone https://github.com/akshitjain16/VisionMATE.git
 ```
 
+2. Install server dependencies:
 ```bash
-cd VisionMATE
+cd server
+npm install
 ```
 
+3. Install client dependencies:
 ```bash
-pip install opencv-python mediapipe tensorflow numpy pyttsx3
+cd client
+npm install
+```
+
+4. Start the server:
+```bash
+cd server
+npm start
+```
+
+5. Start the client:
+```bash
+cd client
+npm start
 ```
 
 ## 🎈 Usage <a name="usage"></a>
 
-1. Launch the application
-2. Position your hand in front of the webcam
-3. Perform ASL gestures
-4. View the text interpretation
-5. Listen to the speech output
+1. Sign up/Login to access the application
+2. Use voice commands for navigation:
+   - "Go to home"
+   - "Go to object detection"
+   - "Go to text to speech"
+   - "Go to todo list"
+3. Access different features through the intuitive interface
+4. Use voice commands or manual controls to interact with each feature
 
-## 📊 Results <a name="results"></a>
+## 👥 Contributors <a name="contributors"></a>
 
-- 97% accuracy in varied backgrounds and lighting conditions
-- 99% accuracy in optimal conditions
-- Real-time processing capability
-- Successful classification of similar hand gestures using landmark patterns
-
-## 🚀 Future Scope <a name="future_scope"></a>
-
-- Support for complete sentence construction
-- Integration of more sign languages
-- Mobile application development
-- Real-time two-way communication system
-- Support for dynamic gestures
-- Cloud-based deployment
-
-## 👥 Contributors
-
-- [akshitjain16](https://github.com/akshitjain16)
+- [Akshit Jain](https://github.com/akshitjain16)
+- Harshit Soni
+- Mukund Jirawla
+- Darshil
+- Vishnu Jangid
 
 ## 📝 License
 
