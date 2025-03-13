@@ -10,7 +10,7 @@
 ---
 
 <p align="center">
-A comprehensive web application designed to assist visually impaired students with features like object detection, text-to-speech, speech-to-text, and task management.
+A comprehensive web application designed to assist visually impaired students with features like object detection, text-to-speech, speech-to-text, and task management using voice commands.
 </p>
 
 ## 📝 Table of Contents
