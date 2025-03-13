@@ -4,9 +4,8 @@ import Login from "./components/LoginSignup";
 import Home from "./components/Home";
 import PrivateRoute from "./PrivateRoutes";
 import ObjectDetection from "./components/ObjectDetection";
-import TTS from "./components/TTS";
 import VoiceNavigation from "./components/VoiceNavigation";
-import ToDoList from "./components/ToDoList";
+import {PDFAudiobook} from "./components/PDFAudiobook";
 import STT from "./components/STT";
 function Routess() {
   return (
@@ -38,7 +37,9 @@ function Routess() {
           exact
           element={
             <PrivateRoute>
-              <TTS />
+              <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <PDFAudiobook />
+    </div>
             </PrivateRoute>
           }
         />
@@ -47,7 +48,7 @@ function Routess() {
           exact
           element={
             <PrivateRoute>
-              <ToDoList />
+              
             </PrivateRoute>
           }
         />
