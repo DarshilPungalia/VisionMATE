@@ -3,7 +3,6 @@ import ObjectCover from "../assets/images/object-detection.png";
 import ToDoList from "../assets/images/to-do-list.png";
 import TTS from "../assets/images/TTS.png";
 import STT from "../assets/images/STT.webp";
-import { Link } from "react-router-dom";
 import { initializeSpeechHover } from './speechUtils';
 
 

@@ -66,11 +66,11 @@ export function TextToSpeech() {
     }
   };
 
-  const stop = () => {
-    window.speechSynthesis.cancel();
-    setIsPlaying(false);
-    setIsPaused(false);
-  };
+  // const stop = () => {
+  //   window.speechSynthesis.cancel();
+  //   setIsPlaying(false);
+  //   setIsPaused(false);
+  // };
 
   return (
     <div className="max-w-2xl w-full mx-auto p-6 bg-white rounded-xl shadow-lg">

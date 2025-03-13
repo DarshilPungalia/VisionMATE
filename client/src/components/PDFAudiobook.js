@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Book, Volume2, Pause, Play, Settings, X, SkipForward, SkipBack, Bookmark, Clock, Volume1, Volume, VolumeX } from 'lucide-react';
+import { Book, Pause, Play, Settings, X, SkipForward, SkipBack, Bookmark, Clock, Volume1, Volume, VolumeX } from 'lucide-react';
 import { getDocument, GlobalWorkerOptions } from 'pdfjs-dist';
 
 // Configure the worker

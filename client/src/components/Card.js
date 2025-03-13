@@ -16,7 +16,7 @@ function Card({ name, image, profileLink }) {
         className="flex flex-col items-center justify-start text-black w-full py-10"
         style={{ background: "#FFE5BF" }}
       >
-        <p className="text-2xl text-black"> {"<" + `${name}` + "/>"}</p>
+        <p className="text-2xl text-black">{`<${name}/>`}</p>
         <br />
         <a href={profileLink} target="_blank" rel="noreferrer">
           <img
@@ -29,7 +29,6 @@ function Card({ name, image, profileLink }) {
     </div>
   );
 }
-
 export default Card;
 
 // https://www.linkedin.com/in/harsh-rajpal/
