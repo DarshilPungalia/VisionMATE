@@ -18,7 +18,7 @@ function Dashboard() {
           { title: "Object Detection", image: ObjectCover, link: "/object-detection", alt: "Object Detection" },
           { title: "Text-to-Speech", image: TTS, link: "/tts", alt: "Text-to-Speech" },
           { title: "Speech-to-Text", image: STT, link: "/stt", alt: "Speech-to-Text" },
-          { title: "To Do List", image: ToDoList, link: "https://v0-speech-to-text-technology.vercel.app/",  alt: "To Do List" }
+          { title: "To Do List", image: ToDoList, link: "/todo-list",  alt: "To Do List" }
         ].map((item, index) => (
           <a 
             href={item.link} 

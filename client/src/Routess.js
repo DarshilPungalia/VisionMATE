@@ -7,6 +7,7 @@ import ObjectDetection from "./components/ObjectDetection";
 import VoiceNavigation from "./components/VoiceNavigation";
 import {PDFAudiobook} from "./components/PDFAudiobook";
 import STT from "./components/STT";
+import ToDoList from "./components/ToDoList";
 function Routess() {
   return (
     <BrowserRouter>
@@ -48,7 +49,7 @@ function Routess() {
           exact
           element={
             <PrivateRoute>
-              
+              <ToDoList />
             </PrivateRoute>
           }
         />
