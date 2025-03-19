@@ -1,10 +1,10 @@
 from flask import Flask, render_template, Response, jsonify
 import cv2
 from ultralytics import YOLO
-import torch
+# import torch
 
 app = Flask(__name__)
-model = YOLO("yolov8s.pt")  # Load YOLOv8 model
+model = YOLO("Models\\yolov8s.pt")  # Load YOLOv8 model
 
 detected_objects = set()
 
