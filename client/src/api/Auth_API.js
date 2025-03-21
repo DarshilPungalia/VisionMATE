@@ -33,7 +33,7 @@ export const signIn = async (user) => {
 
 //authenticate
 export const authenticate = (data, next) => {
-  if (typeof window != undefined) {
+  if (window !== undefined) {
     localStorage.setItem("jwt", JSON.stringify(data));
     next();
   }

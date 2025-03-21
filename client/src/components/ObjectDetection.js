@@ -1,12 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
-import * as tf from "@tensorflow/tfjs";
 import "@tensorflow/tfjs-backend-cpu";
 import "@tensorflow/tfjs-backend-webgl";
 import * as cocossd from "@tensorflow-models/coco-ssd";
 import Webcam from "react-webcam";
 import { Link } from "react-router-dom";
 import FeatureTemplate from "./FeatureTemplate";
-import Prev from "../assets/images/back.png";
+import Prev from "../assets/images/back.png"; 
 
 function ObjectDetection() {
   const webcamRef = useRef(null);
@@ -59,6 +58,7 @@ function ObjectDetection() {
 
   useEffect(() => {
     runCoco();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const speakText = (text) => {
@@ -74,6 +74,7 @@ function ObjectDetection() {
   };
 
   const drawRect = (detection, ctx) => {
+    ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
     detection.forEach((prediction) => {
       const [x, y, width, height] = prediction["bbox"];
       let text = prediction["class"];

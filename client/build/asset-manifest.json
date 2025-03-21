@@ -1,0 +1,36 @@
+{
+  "files": {
+    "main.css": "/static/css/main.4cd6dda5.css",
+    "main.js": "/static/js/main.0f702d37.js",
+    "static/js/453.258b012d.chunk.js": "/static/js/453.258b012d.chunk.js",
+    "static/media/pdf.worker.mjs": "/static/media/pdf.worker.ddb9fabfd9c70de4cf99.mjs",
+    "static/media/HomepageBG.svg": "/static/media/HomepageBG.8de29fda5ea62c0fada198e096cdd766.svg",
+    "static/media/CoverImage.svg": "/static/media/CoverImage.7997f502f5a879a35c33546ae27d2445.svg",
+    "static/media/vishnu.jpeg": "/static/media/vishnu.6f46356baaa56c2d9aef.jpeg",
+    "static/media/ObjectDetection.png": "/static/media/ObjectDetection.fdd0b7dd5a22c5f4c3b6.png",
+    "static/media/object-detection.png": "/static/media/object-detection.e36be973b7e55298c32c.png",
+    "static/media/darshil.jpeg": "/static/media/darshil.eefe36d9c855d24af598.jpeg",
+    "static/media/tts-feat.png": "/static/media/tts-feat.8cf3555c5cb1c915c26b.png",
+    "static/media/akshit.jpeg": "/static/media/akshit.ac5ff8520a535ffc88ee.jpeg",
+    "static/media/mukund.jpeg": "/static/media/mukund.8d528f6e9d65c29188a1.jpeg",
+    "static/media/TTS.png": "/static/media/TTS.81673bc72373d38c7abc.png",
+    "static/media/to-do-list.png": "/static/media/to-do-list.f795ae3e51c979fad76e.png",
+    "static/media/stt-feat.png": "/static/media/stt-feat.a33da6ada5093d47cbae.png",
+    "static/media/harshit.jpeg": "/static/media/harshit.a0becf7f85ddf737c19d.jpeg",
+    "static/media/STT.webp": "/static/media/STT.4b2e8f20606257b7782e.webp",
+    "static/media/logo55X55.svg": "/static/media/logo55X55.cffb8a0fa12fa58faf81f6dcf7d8ee87.svg",
+    "index.html": "/index.html",
+    "static/media/logo35X35.svg": "/static/media/logo35X35.b23427d9184c512b0e5a5712e710283c.svg",
+    "static/media/Microphone.svg": "/static/media/Microphone.deebf0bccc06976dd372054bdfa6b073.svg",
+    "static/media/SignOut23X18.svg": "/static/media/SignOut23X18.3242f4df176cee7907a5b9570d43cc8d.svg",
+    "static/media/info25X25.svg": "/static/media/info25X25.cbeb44f631adb41e834c1ba7dbd26d6e.svg",
+    "static/media/RightArrow18X18.svg": "/static/media/RightArrow18X18.7462c6eb48a39aa95778144441107311.svg",
+    "main.4cd6dda5.css.map": "/static/css/main.4cd6dda5.css.map",
+    "main.0f702d37.js.map": "/static/js/main.0f702d37.js.map",
+    "453.258b012d.chunk.js.map": "/static/js/453.258b012d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4cd6dda5.css",
+    "static/js/main.0f702d37.js"
+  ]
+}
