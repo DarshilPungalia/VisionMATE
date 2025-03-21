@@ -128,11 +128,11 @@ npm start
 
 ## 👥 Contributors <a name="contributors"></a>
 
+- [Harshit Soni](https://github.com/Harshit-Soni78/)
 - [Akshit Jain](https://github.com/akshitjain16)
-- Harshit Soni
-- Mukund Jirawla
-- Darshil
-- Vishnu Jangid
+- [Vishnu Kumar Jangid](https://github.com/vishnujangid88/)
+- [Darshil Pungalia](https://github.com/DarshilPungalia)
+- [Mukand Jirawla](https://github.com/Mukandjirawla)
 
 ## 📝 License
 
